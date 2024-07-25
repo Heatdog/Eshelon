@@ -1,0 +1,19 @@
+syntax = "proto3";
+
+package thumbnail;
+
+option go_package = "heater.sso.v1;ssov1";
+
+service Thumbnail {
+    rpc Get (ThumbnailRequest) returns (stream ThumbnailResponse);
+}
+
+message ThumbnailRequest {
+    repeated string urls = 1;
+    bool is_async = 2;
+}
+
+message ThumbnailResponse {
+    string url = 1;
+    bytes chunk_data = 2;
+}
